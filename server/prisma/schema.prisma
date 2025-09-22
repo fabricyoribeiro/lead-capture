@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -15,8 +14,10 @@ datasource db {
 }
 
 model Lead {
-  id     String @id @unique @default(uuid())
-  name   String
-  email  String @unique
-  status String
+  id        String   @id @unique @default(uuid())
+  name      String
+  email     String   @unique
+  phone     String
+  status    String
+  createdAt DateTime @default(now())
 }
