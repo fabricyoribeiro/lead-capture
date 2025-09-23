@@ -27,7 +27,7 @@ export default {
       if (leadExists) {
         return response.status(409).json({
           error:
-            "the email provided has already been registered in the last hour",
+            "O email informado já foi registrado na última hora",
         });
       }
 
@@ -42,7 +42,7 @@ export default {
       return response.status(201).json(newLead);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        return response.status(400).json({ error: "invalid data" });
+        return response.status(400).json({ error: "dados inválidos" });
       }
       return response
         .status(500)

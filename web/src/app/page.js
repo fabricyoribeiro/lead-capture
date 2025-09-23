@@ -1,27 +1,47 @@
 "use client";
 import Image from "next/image";
 import { EnvelopeSimple, Phone, User } from "@phosphor-icons/react";
+import { ClipLoader } from "react-spinners";
 import { useState } from "react";
 import { BASE_URL } from "../constants/baseUrl.js";
+import { useRouter } from "next/navigation.js";
 
 export default function Home() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(name, email, phone);
+    setLoading(true);
 
     try {
-      await fetch(`${BASE_URL}/lead`, {
+      const response = await fetch(`${BASE_URL}/lead`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, phone }),
       });
+
+      if(!response.ok){
+        const {error} = await response.json()
+        alert(error)
+        return
+      }
+
+      router.push(
+        "https://api.whatsapp.com/send?phone=5587991770638&text=Ol%C3%A1"
+      );
+
     } catch (error) {
       console.error("Erro na requisição de login:", error);
       alert("Erro ao conectar com o servidor. Tente novamente mais tarde.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -94,7 +114,11 @@ export default function Home() {
               type="submit"
               className="bg-blue-700 mt-2 w-3/5 py-3 rounded-4xl hover:bg-blue-700/70 hover:cursor-pointer transition-colors"
             >
-              Continuar
+              {loading ? (
+                <ClipLoader size={20} color="white" />
+              ) : (
+                <span>Continuar</span>
+              )}
             </button>
           </form>
         </div>

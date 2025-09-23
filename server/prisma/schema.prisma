@@ -16,7 +16,7 @@ datasource db {
 model Lead {
   id        String   @id @unique @default(uuid())
   name      String
-  email     String   @unique
+  email     String   
   phone     String
   status    Status?  @default(NOVO)
   createdAt DateTime @default(now())
