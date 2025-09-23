@@ -7,5 +7,6 @@ leadRoutes.post("/", lead.create)
 leadRoutes.get("/", lead.getAll)
 leadRoutes.get("/filter-by-status/:status", lead.filterByStatus)
 leadRoutes.get("/filter-by-date/:date", lead.filterByDate)
+leadRoutes.put("/update-status/:id", lead.updateStatus)
 
 export {leadRoutes}

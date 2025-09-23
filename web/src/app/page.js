@@ -38,7 +38,7 @@ export default function Home() {
       );
 
     } catch (error) {
-      console.error("Erro na requisição de login:", error);
+      console.error("Erro na requisição post", error);
       alert("Erro ao conectar com o servidor. Tente novamente mais tarde.");
     } finally {
       setLoading(false);

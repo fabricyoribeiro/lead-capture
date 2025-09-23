@@ -26,8 +26,7 @@ export default {
 
       if (leadExists) {
         return response.status(409).json({
-          error:
-            "O email informado já foi registrado na última hora",
+          error: "O email informado já foi registrado na última hora",
         });
       }
 
@@ -111,9 +110,29 @@ export default {
       });
 
       return response.status(200).json(numberByStatus);
-      
     } catch (error) {
+      return response
+        .status(500)
+        .json({ error: `internal server error: ${error.message}` });
+    }
+  },
 
+  async updateStatus(request, response) {
+    try {
+      const { id } = request.params;
+      const { status } = request.body;
+
+      await prisma.lead.update({
+        where: {
+          id,
+        },
+        data: {
+          status,
+        },
+      });
+      return response.status(200).send();
+
+    } catch (error) {
       return response
         .status(500)
         .json({ error: `internal server error: ${error.message}` });
