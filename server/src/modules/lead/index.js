@@ -36,7 +36,6 @@ export default {
           name,
           email,
           phone,
-          status: "novo",
         },
       });
 
@@ -103,4 +102,5 @@ export default {
         .json({ error: `internal server error: ${error.message}` });
     }
   },
+
 };

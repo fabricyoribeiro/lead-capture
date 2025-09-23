@@ -18,6 +18,12 @@ model Lead {
   name      String
   email     String   @unique
   phone     String
-  status    String
+  status    Status?  @default(NOVO)
   createdAt DateTime @default(now())
+}
+
+enum Status {
+  NOVO
+  EM_CONTATO
+  CONVERTIDO
 }
