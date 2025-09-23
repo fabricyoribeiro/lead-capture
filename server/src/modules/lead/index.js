@@ -103,4 +103,20 @@ export default {
     }
   },
 
+  async getNumberOfLeadsByStatus(request, response) {
+    try {
+      const numberByStatus = await prisma.lead.groupBy({
+        by: ["status"],
+        _count: true,
+      });
+
+      return response.status(200).json(numberByStatus);
+      
+    } catch (error) {
+
+      return response
+        .status(500)
+        .json({ error: `internal server error: ${error.message}` });
+    }
+  },
 };
