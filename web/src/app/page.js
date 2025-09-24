@@ -5,15 +5,21 @@ import { ClipLoader } from "react-spinners";
 import { useState } from "react";
 import { BASE_URL } from "../constants/baseUrl.js";
 import { useRouter } from "next/navigation.js";
+import Link from "next/link.js";
 
 export default function Home() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+
+  function cleanFields() {
+    setName("");
+    setEmail("");
+    setPhone("");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,15 +33,18 @@ export default function Home() {
         body: JSON.stringify({ name, email, phone }),
       });
 
-      if(!response.ok){
-        const {error} = await response.json()
-        alert(error)
-        return
+      if (!response.ok) {
+        const { error } = await response.json();
+        alert(error);
+        return;
       }
 
-      router.push(
-        "https://api.whatsapp.com/send?phone=5587991770638&text=Ol%C3%A1"
-      );
+      cleanFields();
+      setTimeout(() => {
+        router.push(
+          "https://api.whatsapp.com/send?phone=5587991770638&text=Ol%C3%A1"
+        );
+      }, 1);
 
     } catch (error) {
       console.error("Erro na requisição post", error);
@@ -47,8 +56,8 @@ export default function Home() {
 
   return (
     <div className="h-screen bg-[#F0F4F3] flex justify-center items-center">
-      <main className="bg-white flex items-center w-full max-w-4xl h-3/5 rounded-md">
-        <div className="w-1/2">
+      <main className="bg-white flex items-center justify-center w-full max-w-4xl h-3/5 rounded-md">
+        <div className="w-1/2 max-md:hidden">
           <Image
             className="mx-auto"
             src="home-image.svg"
@@ -57,7 +66,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="w-1/2 flex flex-col items-center p-12">
+        <div className="min-md:w-1/2 flex flex-col items-center p-12">
           <h1 className="text-blue-700 text-2xl font-bold">Cadastro pessoal</h1>
 
           <p className="text-base text-gray-500 my-3 text-center leading-4">
@@ -100,10 +109,10 @@ export default function Home() {
               <Phone size={20} color="#6a7282 " weight="bold" />
               <input
                 className="text-gray-500 w-full outline-0"
-                type="tel"
+                type="text"
                 name="phone"
                 id="phone"
-                placeholder="Nome"
+                placeholder="Telefone"
                 onChange={(e) => {
                   setPhone(e.target.value);
                 }}
@@ -120,6 +129,10 @@ export default function Home() {
                 <span>Continuar</span>
               )}
             </button>
+
+            <Link href="/leads" className="text-blue-700">
+              Area do cliente (link temporário para testes)
+            </Link>
           </form>
         </div>
       </main>

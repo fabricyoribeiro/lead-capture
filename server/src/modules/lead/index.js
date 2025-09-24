@@ -8,7 +8,7 @@ export default {
       const createLeadBody = z.object({
         name: z.string().min(2),
         email: z.string().email(),
-        phone: z.string(),
+        phone: z.string().min(10).max(15).transform((value) => value.replace(/\D/g, ""))
       });
 
       const { name, email, phone } = createLeadBody.parse(request.body);
@@ -67,6 +67,27 @@ export default {
       const filteredLeads = await prisma.lead.findMany({
         where: {
           status,
+        },
+      });
+
+      return response.status(200).json(filteredLeads);
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ error: `internal server error: ${error.message}` });
+    }
+  },
+
+  async findLeadByName(request, response) {
+    try {
+      const { name } = request.params;
+
+      const filteredLeads = await prisma.lead.findMany({
+        where: {
+          name: {
+            contains: name,
+            mode: "insensitive"
+          }
         },
       });
 
