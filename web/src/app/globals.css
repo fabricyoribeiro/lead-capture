@@ -7,7 +7,7 @@
 
 .table > tr, td, th{
   padding-block: 8px;
-  min-width: 200px
+  min-width: 200px;
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
