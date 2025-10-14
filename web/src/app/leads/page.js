@@ -28,6 +28,7 @@ export default function Leads() {
       setLoading(true);
       const response = await fetch(`${BASE_URL}/lead`);
       const data = await response.json();
+      console.log(data)
       setLeads(data);
     } catch (error) {
       alert("erro ao buscar leads:", error);
@@ -72,8 +73,8 @@ export default function Leads() {
   }
 
   return (
-    <div className="h-screen bg-[#F0F4F3] text-gray-700 flex flex-col  items-center">
-      <div className="w-full max-w-6xl mb-4 mt-12 flex gap-4">
+    <div className="h-screen bg-[#F0F4F3] text-gray-700 flex flex-col  items-center whitespace-nowrap">
+      <div className="w-full max-w-6xl mb-4 mt-12 flex gap-4 overflow-x-scroll scrollbar-hidden">
         <button
           onClick={() => {
             setShowList("leads");
@@ -113,9 +114,9 @@ export default function Leads() {
         </button>
       </div>
 
-      <main className="bg-white w-full justify-center max-w-6xl rounded-md px-6 py-3">
+      <main className="bg-white w-full justify-center max-w-6xl rounded-md px-6 py-3 overflow-x-scroll scrollbar-hidden">
         {showList === "leads" && (
-          <table className="table w-full text-left">
+          <table className="table w-full text-left ">
             <thead>
               <tr>
                 <th>Nome</th>
