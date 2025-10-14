@@ -10,9 +10,7 @@
   min-width: 200px;
 }
 
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
-}
+
 
 
 @theme inline {
