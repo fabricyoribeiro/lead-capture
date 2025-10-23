@@ -2,14 +2,15 @@ FROM node:latest
 
 WORKDIR /server
 
-COPY . . 
-
-RUN rm -rf node_modules
+COPY package*.json ./
 
 RUN npm install
 
+COPY . . 
+
 RUN npx prisma generate
 
-CMD [ "npm", "start" ]
 
 EXPOSE 3030
+
+CMD ["sh", "-c", "npx prisma db push && npm start"]
