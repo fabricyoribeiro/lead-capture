@@ -19,7 +19,7 @@
   <h2>🚀 Rodando o projeto com Docker</h2>
 
   <ol>
-    <li>Certifique-se de que o <strong>Docker</strong> e o <strong>Docker Compose</strong> estão instalados na sua máquina.</li>
+    <li>Certifique-se de que o <strong>Docker</strong> esteja instalados na sua máquina.</li>
     <li>No terminal, na raiz do projeto, execute:</li>
   </ol>
 
