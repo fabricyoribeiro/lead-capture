@@ -13,4 +13,4 @@ app.use('/', (request, response) => {
     return response.status(200).json({message: 'API online'})
 })
 
-export default {app}
+export {app}

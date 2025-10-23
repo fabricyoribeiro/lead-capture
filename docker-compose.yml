@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+    restart: always
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: ${PGDATABASE}
+
+  api:
+    container_name: api-lead
+    build: ./server
+    restart: always
+    ports:
+        - 3030:3030
+    depends_on:
+        - db
+    env_file:
+        - ./server/.env
+    
+  web:
+    container_name: web-container
+    build: ./web
+    depends_on:
+      - api
+    env_file:
+      - ./web/.env
+    restart: always
+    ports:
+      - 3000:3000
+
+volumes:
+  pgdata:
