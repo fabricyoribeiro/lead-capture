@@ -1,42 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Sistema de Cadastro de Leads</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 20px;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    h1, h2 {
-      color: #2c3e50;
-    }
-    code {
-      background-color: #ecf0f1;
-      padding: 2px 5px;
-      border-radius: 4px;
-    }
-    pre {
-      background-color: #ecf0f1;
-      padding: 10px;
-      border-radius: 6px;
-      overflow-x: auto;
-    }
-    ul {
-      margin: 10px 0 10px 20px;
-    }
-    .note {
-      background-color: #dff9fb;
-      border-left: 4px solid #00a8ff;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 4px;
-    }
-  </style>
-</head>
+
 <body>
 
   <h1>Sistema de Cadastro de Leads</h1>
@@ -86,4 +48,3 @@
   </ul>
 
 </body>
-</html>
